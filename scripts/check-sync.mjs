@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {sharedPart,difference,applyOperations} from '../sync-core.mjs';
+const base={children:[{id:'c',name:'Bébé',birth:'',kpis:[{id:'milk',name:'Lait'}],entries:[]}],recapEmails:[]};
+const a=structuredClone(base),b=structuredClone(base);a.children[0].entries.push({id:'a',kpi:'milk',note:'Papa'});b.children[0].entries.push({id:'b',kpi:'milk',note:'Maman'});
+const merged=applyOperations(applyOperations(base,difference(base,a)),difference(base,b));assert.equal(merged.children[0].entries.length,2);
+assert.deepEqual(applyOperations(merged,difference(base,a)).children[0].entries.toSorted((a,b)=>a.id.localeCompare(b.id)),merged.children[0].entries.toSorted((a,b)=>a.id.localeCompare(b.id)),'Retry preserves records without duplicates');
+const renamed=structuredClone(base);renamed.children[0].name='Aya';const both=applyOperations(merged,difference(base,renamed));assert.equal(both.children[0].name,'Aya');assert.equal(both.children[0].entries.length,2);
+const deleted=structuredClone(merged);deleted.children[0].entries=deleted.children[0].entries.filter(e=>e.id!=='a');assert.equal(applyOperations(merged,difference(merged,deleted)).children[0].entries[0].id,'b');
+const emailA=structuredClone(base),emailB=structuredClone(base);emailA.recapEmails.push('a@example.test');emailB.recapEmails.push('b@example.test');assert.equal(applyOperations(applyOperations(base,difference(base,emailA)),difference(base,emailB)).recapEmails.length,2);
+assert.equal(difference(sharedPart({...base,theme:'light',active:'c'}),sharedPart({...base,theme:'dark',active:'x'})).length,0);
+console.log('Validé : ajouts simultanés, réessai, prénom sans perte des événements, suppression, e-mails simultanés, préférences locales.');
