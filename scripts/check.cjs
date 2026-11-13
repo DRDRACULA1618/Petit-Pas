@@ -19,3 +19,18 @@ dispatch('event-manual',{kind:'milk'});check(document.getElementById('modal').in
 listeners.change({target:{dataset:{change:'date'},value:'2026-01-07'}});check(selected==='2026-01-07','Date change');
 console.log('Validé : actions des menus, thèmes, ajout, fermeture, profil, suivis et changement de date.');
 `,context);
+
+vm.runInContext(`
+const activeBeforeRename=state.active;
+const other=state.children.find(c=>c.id!==activeBeforeRename);
+childModal(true,other.id);
+const renameForm=document.getElementById('modalForm');renameForm.values={name:'Prénom corrigé',birth:''};renameForm.onsubmit({preventDefault(){},target:renameForm});
+check(other.name==='Prénom corrigé','Rename specifically targeted child');check(state.active===activeBeforeRename,'Rename does not switch child');
+emailSettings();const emailForm=document.getElementById('modalForm');emailForm.values={email:'Parent@Example.test'};emailForm.onsubmit({preventDefault(){},target:emailForm});check(state.recapEmails[0]==='parent@example.test','Email saved and normalized');
+emailSettings();const duplicateForm=document.getElementById('modalForm');duplicateForm.values={email:'parent@example.test'};duplicateForm.onsubmit({preventDefault(){},target:duplicateForm});check(state.recapEmails.length===1,'No duplicate email');
+openRecap();check(document.getElementById('modal').innerHTML.includes('mailto:parent%40example.test'),'Recap opens email composer');removeEmail(0);check(state.recapEmails.length===0,'Email removed');
+const toggle=document.getElementById('sidebarToggle');const attributes={};toggle.setAttribute=(key,value)=>attributes[key]=value;
+globalThis.matchMedia=()=>({matches:false});updateSidebar();const beforeToggle=desktopSidebar;toggleSidebar();check(desktopSidebar!==beforeToggle,'Desktop sidebar toggles');check(localStorage.getItem('petit-pas-sidebar')===(desktopSidebar?'open':'closed'),'Desktop preference persisted');
+globalThis.matchMedia=()=>({matches:true});updateSidebar();check(attributes['aria-expanded']==='false','Mobile menu initially closed');toggleSidebar();check(attributes['aria-expanded']==='true','Mobile menu opens');check(!document.getElementById('sidebarBackdrop').hidden,'Backdrop visible');setView('overview');check(attributes['aria-expanded']==='false','Navigation closes mobile drawer');
+console.log('Validé : prénom du bon enfant, e-mails et doublons, récapitulatif, menu ordinateur mémorisé et menu mobile.');
+`,context);
