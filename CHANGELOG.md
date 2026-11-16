@@ -1,5 +1,13 @@
 # Journal des changements
 
+## 0.3.0 — 2026-11-16
+
+- Applique la palette validée et le fond caramel plus sombre sur mobile et ordinateur.
+- Ajoute les icônes PNG Safari, Android, le favicon SVG/ICO et le manifeste.
+- Conserve les données locales et l’empreinte à cinq orteils avec creux à gauche.
+- Pour un ancien raccourci sans logo : ouvrir le site puis recréer le raccourci si son icône reste en cache.
+
+
 ## 0.2.0 — 2026-11-13
 
 - Ajoute le bouton de barre latérale, la préférence ordinateur et le menu vertical mobile.

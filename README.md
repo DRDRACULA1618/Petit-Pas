@@ -4,13 +4,14 @@ Habit Tracker for Little Heart & Little Angel
 
 Application web familiale, en français, pour suivre les petits événements du quotidien de chaque enfant.
 
-## Version 0.2.0
+## Version 0.3.0
 
 - Barre latérale repliable sur ordinateur, menu vertical sur mobile avec bouton en haut à droite.
 - Crayon à côté de chaque enfant pour corriger directement son prénom.
 - E-mails et récaps : plusieurs adresses, récapitulatif du jour sélectionné, ouverture de la messagerie pour envoi manuel.
 - Module de partage familial Supabase préparé : **non actif tant que le projet distant n’est pas configuré**. Suivre [le guide de connexion](supabase/README.md).
-- Proposition terracotta soumise à validation ; le thème courant reste inchangé.
+- Palette terracotta validée et fond caramel sombre sur ordinateur et mobile ; variante plus claire disponible.
+- Icônes Safari, favoris et écran d’accueil iOS/Android ajoutées. Si un ancien signet reste sans logo, le recréer depuis la page publiée.
 
 Vérifications locales : `node scripts/check.cjs` et `node scripts/check-sync.mjs`.
 Le test navigateur `scripts/check-ui.cjs` nécessite Playwright, Chromium et un serveur local sur le port 8765 servant le dossier parent du dépôt sous `/Petit-Pas/`. Il n’a pas pu être exécuté dans l’environnement de création : lancement de Chromium bloqué. Le partage doit encore être vérifié avec deux vrais comptes après configuration de Supabase.
