@@ -5,3 +5,28 @@ button{transition:background .15s,border-color .15s,color .15s}button:hover{back
 aside{background:#9c5132;color:#fff5e9;border-right-color:#814022;--text:#fff5e9;--muted:#f8e3d0;--line:#d5a185;--soft:#ac6243;--blue:#fff5e9;--tint:#ad6242}
 aside .brand-home,aside .brand-home:hover,aside .brand-foot{color:#fff5e9}aside .brand-sub,aside .eyebrow,aside .connection-status,aside .sidefoot{color:#f8e3d0}aside .brand-sub{line-height:1.8;font-size:9px;letter-spacing:1.5px}aside .avatar{background:#ba7555;color:#fff5e9}aside .child.active{background:#c97b5f;border-color:#dba18a;color:#fff9f0}aside .child:hover,aside .rename-child:hover,aside .side-tools button:hover{background:#b56a4b}aside .rename-child{color:#fff5e9}aside nav button{color:#fff5e9}aside nav button.active{background:#f1cfb4;color:#592b17}aside nav button:hover{background:#b56a4b;color:#fff9f0}aside nav button.active:hover{background:#f1cfb4;color:#592b17}aside .side-tools button{color:#fff5e9;border-color:transparent}aside .themebtn,aside .addchild{color:#fff5e9;border-color:#dba18a}aside .themebtn:hover,aside .addchild:hover{background:#b56a4b}.brand-sub{max-width:175px}
 @media(max-width:650px){.intro h1{font-size:34px}.intro{gap:18px}.headingrow h2{font-size:17px}.timeline tbody th{background:var(--panel)}aside .themebtn{font-size:12px}}
+
+/* Tableau dès l’ouverture, avec les actions secondaires dans le menu. */
+body.table-first .topbar,body.table-first .intro{display:none}
+.table-title{display:flex;align-items:center;gap:14px;min-width:0}
+.table-title h2{margin:0;overflow-wrap:anywhere}
+.table-add{white-space:nowrap}
+body.table-first .timelineheading{margin-top:0;margin-bottom:10px}
+body.table-first .weeklabel{margin-bottom:10px;font-size:11px}
+@media(max-width:650px){
+ .mobile-header{height:56px;padding:8px 16px}
+ .mobile-header .brand-home{font-size:25px;min-height:36px}
+ .sidebar-toggle{top:8px;right:14px;width:40px;height:40px}
+ aside{top:56px}
+ .sidebar-backdrop{top:56px}
+ main{padding:12px 14px 28px}
+ body.table-first .timelineheading{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin-bottom:8px}
+ .table-title{justify-content:space-between;gap:10px}
+ .table-title h2{font-size:17px;line-height:1.25}
+ .table-title .table-add{font-size:12px;padding:7px 10px;min-height:34px}
+ .table-title .table-add svg{width:15px;height:15px}
+ body.table-first .timelinecontrols{display:flex;justify-content:space-between;gap:5px;width:100%}
+ body.table-first .timelinecontrols input{width:125px;min-width:0;flex:1;max-width:180px;min-height:34px}
+ body.table-first .timelinecontrols button{min-height:34px;flex-shrink:0}
+ body.table-first .timelinewrap{border-radius:12px}
+}
